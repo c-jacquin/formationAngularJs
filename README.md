@@ -7,8 +7,12 @@ Simple boilerplate project for AngularJS apps.
   - NO LESS
   - NO Twitter Bootstrap
   - NO fancy language (CoffeeScript, Jade...)
+  - NO Yeoman
 
 Here's what you get :
   - Gulp
-  - Live Reload (using brower plugin)
+  - Karma
+  - No need to add a script tag in your index.html for every JavaScript file you write
+  - Live Reload (using browser plugin)
   - UI Router
+  - Sample code demonstrating how to test AngularJS components

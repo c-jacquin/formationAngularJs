@@ -4,7 +4,8 @@ var express = require('express'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
     liveReload = require('gulp-livereload'),
-    sourceMaps = require('gulp-sourcemaps');
+    sourceMaps = require('gulp-sourcemaps'),
+    karma = require('karma').server;
 
 var config = require('./gulp.config');
 var path = config.path;
@@ -69,3 +70,19 @@ gulp.task('reloadIndex', function () {
     gulp.src(path.indexFile)
         .pipe(liveReload());
 });
+
+gulp.task('test', function (done) {
+    karma.start({
+        configFile: '/home/mikael/WebstormProjects/ng-start/test/karma.conf.js',
+        singleRun: true,
+        autoWatch: false
+    }, done);
+});
+
+gulp.task('tdd', function (done) {
+    karma.start({
+        configFile: '/home/mikael/WebstormProjects/ng-start/test/karma.conf.js'
+    }, done);
+
+});
+

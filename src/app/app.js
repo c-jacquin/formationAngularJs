@@ -1,9 +1,9 @@
 angular.module('app', [
     'ui.router',
-    'home'
+    'start'
 ])
 
     .config(function ($urlRouterProvider, $locationProvider) {
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/start');
         $locationProvider.html5Mode(true);
     });
