@@ -1,11 +1,13 @@
 angular.module('start', [
-    'ui.router'
+    'ui.router',
+    'start.SimpleController'
 ])
 
     .config(function ($stateProvider) {
         $stateProvider.state('start', {
             url: '/start',
             templateUrl: 'start/start.tpl.html',
-            controller: 'SimpleController'
+            controller: 'SimpleController',
+            controllerAs: 'ctrl'
         });
     });
