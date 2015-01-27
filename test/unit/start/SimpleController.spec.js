@@ -24,6 +24,7 @@ describe('SimpleController', function () {
         it('hides greetings', function () {
             expect(SimpleController.greetingsAreDisplayed()).toBe(false);
         });
+
     });
 
     describe('when a name is set', function () {

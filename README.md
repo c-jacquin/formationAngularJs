@@ -1,18 +1,25 @@
 ng-start
 ==================
 
-Simple boilerplate project for AngularJS apps.
+Simple seed project for AngularJS apps.
   - NO backend
-  - NO SASS
-  - NO LESS
+  - NO SASS/LESS
   - NO Twitter Bootstrap
   - NO fancy language (CoffeeScript, Jade...)
   - NO Yeoman
+I don't imply that you shouldn't use any of those, but they are simple enough to add to justify letting them clutter the seed.
 
-Here's what you get :
+Here's what you get out of the box :
   - Gulp
   - Karma
-  - No need to add a script tag in your index.html for every JavaScript file you write
+  - Protractor
+  - Sample code demonstrating how to test AngularJS components and apps
+  - JSHint
   - Live Reload (using browser plugin)
   - UI Router
-  - Sample code demonstrating how to test AngularJS components
+  - No need to add a script tag in your index.html for every JavaScript file you write
+
+Useful gulp tasks :
+  - dev (default) - runs dev server and watches for changes (livereload)
+  - tdd - karma with watchers
+  - atdd - protractor with watchers

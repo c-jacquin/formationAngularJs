@@ -3,7 +3,7 @@ module.exports = function (config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '../',
+        basePath: '../../',
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -11,7 +11,7 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'src/vendor/angular/angular.js',
+            '../../src/vendor/angular/angular.js',
             'src/vendor/angular-mocks/angular-mocks.js',
             'src/vendor/angular-ui-router/release/angular-ui-router.js',
             'src/app/**/*.js',
@@ -28,7 +28,7 @@ module.exports = function (config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress'],
+        reporters: ['nested'],
 
         // web server port
         port: 9876,
