@@ -6,10 +6,12 @@ var express = require('express'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
     liveReload = require('gulp-livereload'),
-    sourceMaps = require('gulp-sourcemaps'),
-    karma = require('karma').server,
+    preprocess = require('gulp-preprocess'),
     protractor = require('gulp-protractor').protractor,
-    protractorQA = require('gulp-protractor-qa');
+    protractorQA = require('gulp-protractor-qa'),
+    rename = require('gulp-rename'),
+    sourceMaps = require('gulp-sourcemaps'),
+    karma = require('karma').server;
 
 var config = require('./gulp.config');
 var paths = config.paths;
@@ -37,7 +39,8 @@ gulp.task('dev', [
 
 gulp.task('buildDev', [
     'buildJs',
-    'cacheTemplates'
+    'cacheTemplates',
+    'mock-backend-html'
 ], function () {
 });
 
@@ -68,11 +71,21 @@ gulp.task('watch', function () {
     gulp.watch(paths.jsSource, ['buildJs']);
     gulp.watch(paths.indexFile, ['reloadIndex']);
     gulp.watch(paths.templates, ['cacheTemplates']);
+    gulp.watch([paths.indexFile, 'src/mock-backend/mock-backend.html'], ['mock-backend-html']);
 });
 
 gulp.task('reloadIndex', function () {
     gulp.src(paths.indexFile)
         .pipe(liveReload());
+});
+
+gulp.task('mock-backend-html', function () {
+    gulp.src(paths.indexFile)
+        .pipe(preprocess({
+            context: {mockBackend: true}
+        }))
+        .pipe(rename('index-mb.html'))
+        .pipe(gulp.dest(paths.srcFolder));
 });
 
 

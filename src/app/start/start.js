@@ -10,4 +10,11 @@ angular.module('start', [
             controller: 'SimpleController',
             controllerAs: 'ctrl'
         });
+    })
+
+    .run(function ($http) {
+        $http.get('/user')
+            .success(function (data) {
+                console.log(data);
+            });
     });

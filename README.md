@@ -1,18 +1,20 @@
 ng-start
 ==================
 
-Simple seed project for AngularJS apps.
+Simple AngularJS seed project.
   - NO backend
   - NO SASS/LESS
   - NO Twitter Bootstrap
   - NO fancy language (CoffeeScript, Jade...)
   - NO Yeoman
-I don't imply that you shouldn't use any of those, but they are simple enough to add to justify letting them clutter the seed.
+  - NO Restangular
+I don't imply that you shouldn't use them, but I am fed up with cluttered seed projects.
 
 Here's what you get out of the box :
   - Gulp
   - Karma
   - Protractor
+  - angular-mock-back
   - Sample code demonstrating how to test AngularJS components and apps
   - JSHint
   - Live Reload (using browser plugin)

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ng-start your project !</title>
-    <base href="/"/>
+    <!--<base href="/"/>-->
     <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
 <body ng-app="app">
@@ -16,5 +16,10 @@
 <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="build/all-source.js"></script>
 <script src="build/templates.js"></script>
+
+<!-- @ifdef mockBackend -->
+<!-- @include mock-backend/mock-backend.html -->
+<!-- @endif -->
+
 </body>
 </html>

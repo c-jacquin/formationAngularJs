@@ -5,5 +5,5 @@ angular.module('app', [
 
     .config(function ($urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/start');
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
     });
