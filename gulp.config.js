@@ -9,7 +9,8 @@ var config = {
         karmaConfigFile: 'test/unit/karma.config.js',
         e2eTests: 'test/e2e/**/*.spec.js',
         pageObjects: 'test/e2e/**/*.page.js',
-        protractorConfigFile: 'test/e2e/protractor.config.js'
+        protractorConfigFile: 'test/e2e/protractor.config.js',
+        mockBackendData: 'src/mock-backend/data/**/*.js'
     }
 };
 

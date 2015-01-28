@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ng-start your project !</title>
-    <!--<base href="/"/>-->
+    <base href="/"/>
     <link rel="stylesheet" href="style.css" type="text/css"/>
 </head>
 <body ng-app="app">
@@ -18,7 +18,10 @@
 <script src="build/templates.js"></script>
 
 <!-- @ifdef mockBackend -->
-<!-- @include mock-backend/mock-backend.html -->
+<script src="vendor/angular-mocks/angular-mocks.js"></script>
+<script src="vendor/angular-mock-back/angular-mock-back.js"></script>
+<script src="build/all-mock-backend-data.js"></script>
+<script src="mock-backend/mock-backend.config.js"></script>
 <!-- @endif -->
 
 </body>

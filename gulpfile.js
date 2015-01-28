@@ -40,7 +40,7 @@ gulp.task('dev', [
 gulp.task('buildDev', [
     'buildJs',
     'cacheTemplates',
-    'mock-backend-html'
+    'concatBackendData'
 ], function () {
 });
 
@@ -71,7 +71,7 @@ gulp.task('watch', function () {
     gulp.watch(paths.jsSource, ['buildJs']);
     gulp.watch(paths.indexFile, ['reloadIndex']);
     gulp.watch(paths.templates, ['cacheTemplates']);
-    gulp.watch([paths.indexFile, 'src/mock-backend/mock-backend.html'], ['mock-backend-html']);
+    gulp.watch(paths.mockBackendData, ['concatBackendData']);
 });
 
 gulp.task('reloadIndex', function () {
@@ -79,13 +79,16 @@ gulp.task('reloadIndex', function () {
         .pipe(liveReload());
 });
 
-gulp.task('mock-backend-html', function () {
-    gulp.src(paths.indexFile)
-        .pipe(preprocess({
-            context: {mockBackend: true}
-        }))
-        .pipe(rename('index-mb.html'))
-        .pipe(gulp.dest(paths.srcFolder));
+gulp.task('concatBackendData', function () {
+    gulp.src(paths.mockBackendData)
+        .pipe(concat('all-mock-backend-data.js'))
+        .pipe(gulp.dest('src/build'));
+    //gulp.src(paths.indexFile)
+    //    .pipe(preprocess({
+    //        context: {mockBackend: true}
+    //    }))
+    //    .pipe(rename('index-mb.html'))
+    //    .pipe(gulp.dest(paths.srcFolder));
 });
 
 

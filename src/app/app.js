@@ -4,6 +4,6 @@ angular.module('app', [
 ])
 
     .config(function ($urlRouterProvider, $locationProvider) {
+        $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/start');
-        //$locationProvider.html5Mode(true);
     });
