@@ -1,4 +1,3 @@
-;
 (function () {
 
     var data = window.mockBackendData;

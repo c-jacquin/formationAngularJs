@@ -1,4 +1,3 @@
-;
 (function (mockBackendData) {
 
     mockBackendData.user = {

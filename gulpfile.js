@@ -18,13 +18,10 @@ var paths = config.paths;
 
 var buildFolder = 'src/build';
 
-// DEV SERVER
-var devServer = express();
-devServer.use(express.static(paths.srcFolder));
 
-devServer.all('/*', function (req, res) {
-    res.sendFile('index.html', {root: 'src'});
-});
+//////////
+// DEV //
+////////
 
 gulp.task('default', ['dev'], function () {
 });
@@ -32,7 +29,7 @@ gulp.task('default', ['dev'], function () {
 gulp.task('dev', [
     'buildDev',
     'startDevServer',
-    'watch',
+    'watchSource',
     'protractor-qa'
 ], function () {
 });
@@ -40,14 +37,14 @@ gulp.task('dev', [
 gulp.task('buildDev', [
     'buildJs',
     'cacheTemplates',
-    'concatBackendData'
+    'buildMockBackendData'
 ], function () {
 });
 
 gulp.task('buildJs', function () {
     gulp.src(paths.jsSource)
         .pipe(jshint())
-        .pipe(jshint.reporter('default'))
+        .pipe(jshint.reporter('default')) // TODO Stylish
         .pipe(sourceMaps.init())
         .pipe(concat('all-source.js'))
         .pipe(sourceMaps.write())
@@ -62,33 +59,46 @@ gulp.task('cacheTemplates', function () {
         .pipe(liveReload());
 });
 
-gulp.task('startDevServer', function () {
-    devServer.listen(config.port);
-});
-
-gulp.task('watch', function () {
-    liveReload.listen();
-    gulp.watch(paths.jsSource, ['buildJs']);
-    gulp.watch(paths.indexFile, ['reloadIndex']);
-    gulp.watch(paths.templates, ['cacheTemplates']);
-    gulp.watch(paths.mockBackendData, ['concatBackendData']);
-});
-
-gulp.task('reloadIndex', function () {
-    gulp.src(paths.indexFile)
-        .pipe(liveReload());
-});
-
-gulp.task('concatBackendData', function () {
+gulp.task('buildMockBackendData', function () {
     gulp.src(paths.mockBackendData)
+        .pipe(jshint())
+        .pipe(jshint.reporter('default')) // TODO Stylish
         .pipe(concat('all-mock-backend-data.js'))
-        .pipe(gulp.dest('src/build'));
+        .pipe(gulp.dest('src/build'))
+        .pipe(liveReload());
     //gulp.src(paths.indexFile)
     //    .pipe(preprocess({
     //        context: {mockBackend: true}
     //    }))
     //    .pipe(rename('index-mb.html'))
     //    .pipe(gulp.dest(paths.srcFolder));
+});
+
+gulp.task('startDevServer', function () {
+    var devServer = express();
+    devServer.use(express.static(paths.srcFolder));
+    devServer.all('/*', function (req, res) {
+        res.sendFile('index.html', {root: 'src'});
+    });
+    devServer.listen(config.port);
+});
+
+
+/////////////////////
+// WATCH & RELOAD //
+///////////////////
+
+gulp.task('watchSource', function () {
+    liveReload.listen();
+    gulp.watch(paths.jsSource, ['buildJs']);
+    gulp.watch(paths.indexFile, ['reloadIndex']);
+    gulp.watch(paths.templates, ['cacheTemplates']);
+    gulp.watch(paths.mockBackendData, ['buildMockBackendData']);
+});
+
+gulp.task('reloadIndex', function () {
+    gulp.src(paths.indexFile)
+        .pipe(liveReload());
 });
 
 
@@ -98,7 +108,7 @@ gulp.task('concatBackendData', function () {
 
 var pathToKarmaConfigFile = path.resolve(paths.karmaConfigFile);
 
-gulp.task('test', function (done) {
+gulp.task('unit', function (done) {
     karma.start({
         configFile: pathToKarmaConfigFile,
         singleRun: true,
@@ -136,21 +146,18 @@ function runProtractor(cb) {
         .on('end', cb);
 }
 
-
-///////////
-// ATDD //
-/////////
-
 gulp.task('protractor', runProtractor);
 
 gulp.task('atdd', ['dev'], function (cb) {
-    setTimeout(function () {
-        runProtractor(cb);
-    }, 500); // Wait for the Selenium server to start
-    gulp.watch(paths.jsSource, ['protractor']);
-    gulp.watch(paths.templates, ['protractor']);
-    gulp.watch(paths.indexFile, ['protractor']);
-    gulp.watch(paths.e2eTests, ['protractor']);
+    runProtractor(cb);
+    var filesToWatch = [
+        paths.jsSource,
+        paths.templates,
+        paths.indexFile,
+        paths.e2eTests,
+        paths.mockBackendData
+    ];
+    gulp.watch(filesToWatch, ['protractor']);
 });
 
 
