@@ -12,4 +12,9 @@ describe('SimpleService.sayHello', function () {
         expect(message).toBe('Hello, Name');
     });
 
+    it('returns "Hello" when no name', function () {
+        var message = SimpleService.sayHello();
+        expect(message).toBe('Hello');
+    });
+
 });
