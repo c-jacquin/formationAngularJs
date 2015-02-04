@@ -148,19 +148,6 @@ function runProtractor(cb) {
 
 gulp.task('protractor', runProtractor);
 
-gulp.task('atdd', ['dev'], function (cb) {
-    runProtractor(cb);
-    var filesToWatch = [
-        paths.jsSource,
-        paths.templates,
-        paths.indexFile,
-        paths.e2eTests,
-        paths.mockBackendData
-    ];
-    gulp.watch(filesToWatch, ['protractor']);
-});
-
-
 ///////////
 // MISC //
 /////////
