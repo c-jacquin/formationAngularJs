@@ -8,6 +8,7 @@ Simple AngularJS seed project.
   - NO fancy language (CoffeeScript, Jade...)
   - NO Yeoman
   - NO Restangular
+  
 I don't imply that you shouldn't use them, but I am fed up with cluttered seed projects.
 
 Here's what you get out of the box :
