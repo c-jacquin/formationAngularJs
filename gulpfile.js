@@ -13,7 +13,7 @@ var express = require('express'),
     sourceMaps = require('gulp-sourcemaps'),
     karma = require('karma').server;
 
-var config = require('./gulp.config');
+var config = require('./config/gulp.config.js');
 var paths = config.paths;
 
 var buildFolder = 'src/build';

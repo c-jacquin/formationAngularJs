@@ -3,7 +3,7 @@ module.exports = function (config) {
     config.set({
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: '../../',
+        basePath: '../src/',
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -11,11 +11,10 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'src/vendor/angular/angular.js',
-            'src/vendor/angular-mocks/angular-mocks.js',
-            'src/vendor/angular-ui-router/release/angular-ui-router.js',
-            'src/app/**/*.js',
-            'test/unit/**/*.spec.js'
+            'vendor/angular/angular.js',
+            'vendor/angular-mocks/angular-mocks.js',
+            'vendor/angular-ui-router/release/angular-ui-router.js',
+            'app/**/*.js'
         ],
 
         // list of files to exclude
@@ -25,7 +24,7 @@ module.exports = function (config) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {},
 
-        // test results reporter to use
+        // test-e2e results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
         reporters: ['nested'],

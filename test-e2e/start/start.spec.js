@@ -1,4 +1,4 @@
-var StartPage = require('./start.page');
+var StartPage = require('./start.page.js');
 
 describe('start', function () {
 
