@@ -3,7 +3,7 @@ describe('Users', function () {
     var Users,
         $httpBackend;
 
-    beforeEach(module('start.Users'));
+    beforeEach(module('common.Users'));
     beforeEach(inject(function (_Users_, _$httpBackend_) {
         Users = _Users_;
         $httpBackend = _$httpBackend_;

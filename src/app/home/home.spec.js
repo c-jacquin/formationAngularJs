@@ -2,7 +2,7 @@ describe('SimpleController', function () {
 
     var SimpleController;
 
-    beforeEach(module('start.SimpleController'));
+    beforeEach(module('home'));
     beforeEach(inject(function ($controller) {
         SimpleController = $controller('SimpleController');
     }));
@@ -39,6 +39,4 @@ describe('SimpleController', function () {
             expect(SimpleController.greetingsAreDisplayed()).toBe(true);
         });
     });
-
-
 });

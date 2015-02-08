@@ -2,7 +2,7 @@ describe('SimpleService.sayHello', function () {
 
     var SimpleService;
 
-    beforeEach(module('start.SimpleService'));
+    beforeEach(module('common.simpleService'));
     beforeEach(inject(function (_SimpleService_) {
         SimpleService = _SimpleService_;
     }));

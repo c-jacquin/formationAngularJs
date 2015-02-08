@@ -1,4 +1,4 @@
-angular.module('start.Users', [])
+angular.module('common.Users', [])
 
     .service('Users', function ($http) {
 

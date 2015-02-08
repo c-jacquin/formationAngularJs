@@ -1,0 +1,7 @@
+<h3>Start Your Project !</h3>
+
+<p ng-if="home.instructionsAreDisplayed()">{{ home.instructions }}</p>
+
+<p><input type="text" ng-model="home.user.name"></p>
+
+<p id="greetings" ng-if="home.greetingsAreDisplayed()">Welcome, {{ home.user.name }}</p>

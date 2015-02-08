@@ -1,4 +1,4 @@
-angular.module('start.SimpleService', [])
+angular.module('common.SimpleService', [])
 
     .service('SimpleService', function () {
 

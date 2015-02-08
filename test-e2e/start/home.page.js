@@ -5,11 +5,11 @@ var StartPage = function () {
     };
 
     this.getInstructionsElement = function () {
-        return element(by.binding('ctrl.instructions'));
+        return element(by.binding('home.instructions'));
     };
 
     this.setName = function (name) {
-        element(by.model('ctrl.user.name')).sendKeys(name);
+        element(by.model('home.user.name')).sendKeys(name);
     }
 
     this.getGreetingsElement = function () {
