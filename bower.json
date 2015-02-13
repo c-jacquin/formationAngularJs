@@ -3,8 +3,10 @@
   "description": "Simple AngularJS seed project",
   "version": "0.0.1",
   "dependencies": {
-    "angular": "1.3.*",
-    "angular-ui-router": "*"
+    "angular": "*",
+    "angular-material": "master",
+    "angular-ui-router": "*",
+    "restangular": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.3.*",

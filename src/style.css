@@ -1,0 +1,10 @@
+[collapse-card] section{
+    height:auto;
+    max-height: 0;
+    overflow:auto;
+    transition: max-height 0.5s ease-in;
+}
+
+[ui-view]{
+    width: 100%;
+}

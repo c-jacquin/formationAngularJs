@@ -1,0 +1,30 @@
+<md-subheader class="md-primary" layout="row" hide-gt-md style="z-index:2;">
+    <md-autocomplete
+            md-selected-item="assessments.selectedItem"
+            md-search-text="assessments.searchText"
+            md-items="item in assessments.querySearch(assessments.searchText)"
+            md-item-text="title"
+            placeholder="filter by title">
+        <span md-highlight-text="assessments.searchText">{{item.title}}</span>
+    </md-autocomplete>
+</md-subheader>
+<md-list ng-repeat="assessment in assessments.list | filter:assessments.selectedItem" >
+    <md-item>
+        <md-item-content>
+            <div class="md-tile-left">
+                {{$index}}
+            </div>
+            <div class="md-tile-content">
+                {{ assessment.title }}
+            </div>
+            <div class="md-tile-right" layout="row">
+                <md-button>
+                    =>
+                </md-button>
+                <md-button>
+                    X
+                </md-button>
+            </div>
+        </md-item-content>
+    </md-item>
+</md-list>

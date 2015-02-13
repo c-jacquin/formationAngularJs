@@ -1,7 +1,43 @@
-<h3>Start Your Project !</h3>
+<section layout="columns" layout-align="center center">
+    <form flex="70" ng-submit="home.getGithubInfo(home.user.name)">
+        <md-subheader class="md-primary" ng-show="home.instructionsAreDisplayed()">
+            <div class="md-subheader-content">
+                {{ home.instructions }}
+            </div>
+        </md-subheader>
+        <md-input-container>
+            <label>Title</label>
+            <input md-maxlength="10" name="name" ng-model="home.user.name">
+            <div ng-messages="assessmentForm.title.$error">
+                <div ng-message="md-maxlength">username has to be less than 10 characters long.</div>
+            </div>
+        </md-input-container>
+        <div layout="row">
+            <md-button type="submit" class="md-raised" flex>Check github</md-button>
+            <div flex>
+                <md-button style="width:100%;" collapse-button collapse-id="home" type="button" ng-disabled="!home.user.name">
+                    Show/hide
+                </md-button>
+            </div>
+        </div>
+        <div collapse-card collapse-id="home" is-open="true" max-height="600">
+            <section  class="md-whiteframe-z4" >
+                <p style="text-align: center;" id="greetings" ng-if="home.greetingsAreDisplayed() && home.user.name">Welcome, {{ home.user.name }}</p>
+                <img ng-src="{{home.userInfo.avatar_url}}" alt="" width="50px" />{{ home.userInfo.login }}
+                <md-list ng-repeat="(key, value) in home.userInfo">
+                    <md-item>
+                        <md-item-content>
+                            <div class="md-tile-left">
+                                {{ key }} :
+                            </div>
+                            <div class="md-tile-content">
+                                {{ value }}
+                            </div>
+                        </md-item-content>
+                    </md-item>
+                </md-list>
+            </section>
+        </div>
 
-<p ng-if="home.instructionsAreDisplayed()">{{ home.instructions }}</p>
-
-<p><input type="text" ng-model="home.user.name"></p>
-
-<p id="greetings" ng-if="home.greetingsAreDisplayed()">Welcome, {{ home.user.name }}</p>
+    </form>
+</section>

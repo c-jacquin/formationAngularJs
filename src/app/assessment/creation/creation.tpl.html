@@ -1,0 +1,35 @@
+<section layout="columns">
+    <div flex></div>
+    <form name="assessmentForm" novalidate flex="80" ng-submit="assessment.submit()">
+        <md-input-container>
+            <label>Title</label>
+            <input md-maxlength="30" name="title" ng-model="assessment.title">
+            <div ng-messages="assessmentForm.title.$error">
+                <div ng-message="md-maxlength">The title has to be less than 30 characters long.</div>
+            </div>
+        </md-input-container>
+        <md-input-container flex>
+            <label>Instructions</label>
+            <textarea ng-model="assessment.instructions" name="instructions" placeholder="instructions" md-maxlength="150"></textarea>
+            <div ng-messages="assessmentForm.instructions.$error">
+                <div ng-message="md-maxlength">The instructions has to be less than 500 characters long.</div>
+            </div>
+        </md-input-container>
+        <md-input-container flex>
+            <label>Start Code</label>
+            <textarea ng-model="assessment.startCode" name="startCode" columns="1" md-maxlength="500"></textarea>
+            <div ng-messages="assessmentForm.startCode.$error">
+                <div ng-message="md-maxlength">The start code has to be less than 500 characters long.</div>
+            </div>
+        </md-input-container>
+        <div layout="columns">
+            <md-button flex type="submit" ng-disabled="assessmentForm.$invalid">
+                Submit
+            </md-button>
+            <md-button flex type="reset" ng-disabled="assessmentForm.$pristine">
+                Reset
+            </md-button>
+        </div>
+    </form>
+    <div flex></div>
+</section>

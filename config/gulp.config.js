@@ -1,6 +1,8 @@
 var config = {
     port: 3000,
+    portDist:3001,
     paths: {
+        dist: './dist',
         srcFolder: 'src',
         jsSource: ['src/app/**/*.js', '!src/app/**/*.spec.js'],
         indexFile: 'src/index.html',

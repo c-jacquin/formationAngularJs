@@ -1,13 +1,20 @@
-angular.module('app', [
-    'ui.router',
-    'home'
-])
+(function() {
+    'use strict';
 
-    .config(function ($urlRouterProvider, $locationProvider) {
-        $locationProvider.html5Mode(true);
-        $urlRouterProvider.otherwise('/start');
-    })
+    angular.module('app', [
+        'ngMaterial',
+        'ui.router',
+        'restangular',
+        'home',
+        'assessments',
+        'common'
+    ])
+        .config(function ($urlRouterProvider, $locationProvider) {
+            $locationProvider.html5Mode(true);
+            $urlRouterProvider.otherwise('/');
+        })
 
-    .run(function () {
-        console.log('run !!!');
-    });
+        .run(function () {
+            console.log('run !!!');
+        });
+})();

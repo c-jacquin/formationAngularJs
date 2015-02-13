@@ -6,11 +6,15 @@ var express = require('express'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
     liveReload = require('gulp-livereload'),
-    preprocess = require('gulp-preprocess'),
     protractor = require('gulp-protractor').protractor,
     protractorQA = require('gulp-protractor-qa'),
-    rename = require('gulp-rename'),
     sourceMaps = require('gulp-sourcemaps'),
+    annotate = require('gulp-ng-annotate'),
+    usemin = require('gulp-usemin'),
+    uglify = require('gulp-uglify'),
+    minifyHtml = require('gulp-minify-html'),
+    minifyCss = require('gulp-minify-css'),
+    rev = require('gulp-rev'),
     karma = require('karma').server;
 
 var config = require('./config/gulp.config.js');
@@ -23,28 +27,27 @@ var buildFolder = 'src/build';
 // DEV //
 ////////
 
-gulp.task('default', ['dev'], function () {
+gulp.task('default', ['tdd'], function () {
 });
 
 gulp.task('dev', [
     'buildDev',
     'startDevServer',
     'watchSource',
-    'protractor-qa'
+    'protractor-qa',
 ], function () {
 });
 
 gulp.task('buildDev', [
     'buildJs',
-    'cacheTemplates',
-    'buildMockBackendData'
+    'cacheTemplates'
 ], function () {
 });
 
 gulp.task('buildJs', function () {
     gulp.src(paths.jsSource)
         .pipe(jshint())
-        .pipe(jshint.reporter('default')) // TODO Stylish
+        .pipe(jshint.reporter('jshint-stylish'))
         .pipe(sourceMaps.init())
         .pipe(concat('all-source.js'))
         .pipe(sourceMaps.write())
@@ -59,24 +62,10 @@ gulp.task('cacheTemplates', function () {
         .pipe(liveReload());
 });
 
-gulp.task('buildMockBackendData', function () {
-    gulp.src(paths.mockBackendData)
-        .pipe(jshint())
-        .pipe(jshint.reporter('default')) // TODO Stylish
-        .pipe(concat('all-mock-backend-data.js'))
-        .pipe(gulp.dest('src/build'))
-        .pipe(liveReload());
-    //gulp.src(paths.indexFile)
-    //    .pipe(preprocess({
-    //        context: {mockBackend: true}
-    //    }))
-    //    .pipe(rename('index-mb.html'))
-    //    .pipe(gulp.dest(paths.srcFolder));
-});
-
 gulp.task('startDevServer', function () {
     var devServer = express();
     devServer.use(express.static(paths.srcFolder));
+
     devServer.all('/*', function (req, res) {
         res.sendFile('index.html', {root: 'src'});
     });
@@ -116,7 +105,7 @@ gulp.task('unit', function (done) {
     }, done);
 });
 
-gulp.task('tdd', function (done) {
+gulp.task('tdd',['dev'], function (done) {
     karma.start({
         configFile: pathToKarmaConfigFile
     }, done);
@@ -124,12 +113,9 @@ gulp.task('tdd', function (done) {
 });
 
 
+////////////////////
+//// E2E TESTING //
 //////////////////
-// E2E TESTING //
-////////////////
-
-// TODO Test production
-// TODO Exit gulp task when tests have run
 gulp.task('e2e', [
     'buildDev',
     'startDevServer'
@@ -157,4 +143,30 @@ gulp.task('protractor-qa', function () {
         testSrc: [paths.e2eTests, paths.pageObjects],
         viewSrc: [paths.indexFile, paths.templates]
     });
+});
+
+//////////////////
+// BUILD DIST //
+////////////////
+
+gulp.task('buildDist',[
+    'unit'
+],function(){
+    gulp.src('./src/index.html')
+        .pipe(usemin({
+            css: [minifyCss(),rev()],
+            js: [annotate(),uglify(),rev()],
+            html: [minifyHtml({empty: true})]
+        }))
+        .pipe(gulp.dest(paths.dist))
+});
+
+gulp.task('serveDist',[],function(){
+    var devServer = express();
+    devServer.use(express.static(paths.dist));
+
+    devServer.all('/*', function (req, res) {
+        res.sendFile('index.html', {root: 'dist'});
+    });
+    devServer.listen(config.portDist);
 });

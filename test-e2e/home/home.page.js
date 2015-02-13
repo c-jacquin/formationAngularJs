@@ -1,7 +1,7 @@
 var StartPage = function () {
 
     this.get = function () {
-        browser.get('/start');
+        browser.get('/home');
     };
 
     this.getInstructionsElement = function () {
@@ -10,7 +10,7 @@ var StartPage = function () {
 
     this.setName = function (name) {
         element(by.model('home.user.name')).sendKeys(name);
-    }
+    };
 
     this.getGreetingsElement = function () {
         return element(by.id('greetings'));
