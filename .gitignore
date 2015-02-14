@@ -3,5 +3,4 @@ node_modules
 src/build
 src/vendor
 dist
-src/index-mb.html
 npm-debug.log
