@@ -7,15 +7,14 @@
             scope: {
                 //identififiant de la carte (pour avoir plusieurs collapse-card par page)
                 collapseId: '@',
-                isOpen: '=',
                 maxHeight: '@'
             },
             link: function (scope, element) {
 
                 var section = element.find('section');
 
-                //ici j'ai remplacer $scope.watch par Object.observe qui fonctionne a peu prés partout 4 fois plus rapidedement
-                //le callback se declenchera a chaque click sur la directive collapse-button possedant le me collapseId
+                //ici j'ai remplacer $scope.watch par Object.observe qui fonctionne a peu prés partout
+                //le callback se declenchera a chaque click sur la directive collapse-button possedant le meme collapseId
                 Object.observe(collapse.getById(scope.collapseId), function (newValue) {
 
                     //on teste la nouvelle valeur du booleen stocké dans le service et correspondant ai collapseId
@@ -37,10 +36,6 @@
     }
 
     function CollapseButtonController($scope, collapse) {
-        //on enregistre la collapse card dans le service avec le collapseId fournit en attribut via le html
-        //on expose a la vue l'objet stocké dans le service collapse correspondant a la valeur collapseId passée via les attributs html
-        collapse.register($scope.collapseId, $scope.isOpen || false);
-
 
         //au click sur l'element on change la valeur de l'attribut isOpen de l'objet stocké dans le service
         $scope.toggle = function () {
@@ -61,19 +56,25 @@
         };
     }
 
-    function collapseFactory() {
+    function collapseFactory($rootScope) {
         var data = {};
         return {
+            //stocke dans data l'id d'un element collapsible et un booléen qui specifie si il est ouvert ou non
             register: function (id, isOpen) {
                 data[id] = {
                     isOpen: isOpen
                 };
                 return data[id];
             },
+            //change la valeur de l'attribut booleen correspondant à un id passer en parametre
             toggle: function (id) {
-                data[id].isOpen = !data[id].isOpen;
+                //l'appel de cette methode permet de mettre a jour les données dans la vue, on indique à angular que des données ont changees et doivent être raffraichis
+                $rootScope.$apply(function(){
+                    data[id].isOpen = !data[id].isOpen;
+                });
                 return data[id];
             },
+            //retourne l'objet correspondant a l'id passé en parametre
             getById: function (id) {
                 return data[id];
             }

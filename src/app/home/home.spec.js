@@ -13,44 +13,31 @@ describe('HomeController', function () {
     //on inject les differents services necessaires au tests
     //et on definie un mock pour le service github$
     beforeEach(module('home', function ($provide) {
+        // le service mock qui remplacera le service github
         githubMock = {
             getUserInfo: function () {
                 return $q(function (resolve, reject) {
                     resolve(dummyUserInfo);
                 })
+            },
+            getInfo: function(){
+                return dummyUserInfo;
             }
         };
+        //spyOn est fournis par jasmine et permet de mettre un listener sur une methode, nous pourrons donc tester si cette derniere a été appelée
         spyOn(githubMock, 'getUserInfo').and.callThrough();
+        //on remplace le service github par le mock dans le systéme d'injection de dependance d'angular
         $provide.value('github', githubMock);
     }));
 
-
     beforeEach(inject(function ($controller, _$q_, _$timeout_, _github_) {
+        //ici c'est donc le mockService qui est injecter et non le service github original
         github = _github_;
         $q = _$q_;
         HomeController = $controller('HomeController');
         $timeout = _$timeout_;
     }));
 
-    it('is initialized with instructions', function () {
-        expect(HomeController.instructions).toBe('Enter your name');
-    });
-
-    describe('when no name is set', function () {
-
-        beforeEach(function () {
-            HomeController.user.name = '';
-        });
-
-        it('shows instructions', function () {
-            expect(HomeController.instructionsAreDisplayed()).toBe(true);
-        });
-
-        it('hides greetings', function () {
-            expect(HomeController.greetingsAreDisplayed()).toBe(false);
-        });
-
-    });
 
     describe('when a name is set', function () {
 
@@ -67,7 +54,9 @@ describe('HomeController', function () {
 
     describe('github feature', function () {
         it('should have call getUserInfo method of github service', function () {
+            //on lance la methode du controller afin de tester si celle ci appelle bien la methode du service github
             HomeController.getGithubInfo('Charl---');
+            //grace a la methode spyOn nous pouvons faire ce test
             expect(github.getUserInfo).toHaveBeenCalled();
         })
     });

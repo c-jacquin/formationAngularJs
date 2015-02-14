@@ -18,11 +18,8 @@
                 {{ assessment.title }}
             </div>
             <div class="md-tile-right" layout="row">
-                <md-button>
-                    =>
-                </md-button>
-                <md-button>
-                    X
+                <md-button ng-click="assessments.details($event)">
+                    Edit
                 </md-button>
             </div>
         </md-item-content>

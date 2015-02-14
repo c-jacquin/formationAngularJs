@@ -13,12 +13,15 @@ describe('collapse component', function() {
         //le service
         collapse = _collapse_;
 
+        //on initialise le service
+        collapse.register('test',false);
+
         //on créer les objets angular correspondant à des elements html utilisant nos directives
         button = angular.element('<div collapse-button collapse-id="test">click me !!!</div>');
-        card = angular.element('<div collapse-card collapse-id="test" is-open="false" max-height="1000">Some text !!!</div>');
+        card = angular.element('<div collapse-card collapse-id="test" max-height="1000">Some text !!!</div>');
 
 
-        //on compile les bouts de html
+        //on compile les bouts de html et fournis un scope ($rootScope.$new() return un nouveau scope)
         $compile(button)($rootScope.$new());
         $compile(card)($rootScope.$new());
 
@@ -34,6 +37,7 @@ describe('collapse component', function() {
     //on test la valeur du controlleur
     it('should change the value of the scope property', function(){
         expect(collapse.getById('test').isOpen).toBeFalsy();
+        //on lance la methode du controller afin de tester son efficacité
         buttonScope.toggle();
         expect(collapse.getById('test').isOpen).toBeTruthy();
     });
@@ -42,6 +46,7 @@ describe('collapse component', function() {
     //on test la valeur du service
     it('should register a new collapse element in the service',function(){
         expect(collapse.getById('otherTest')).toBeUndefined();
+        //on lance la methode du service afin de tester son efficacité
         collapse.register('otherTest',true);
         expect(collapse.getById('otherTest').isOpen).toBeTruthy();
     })

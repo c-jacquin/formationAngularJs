@@ -9,14 +9,6 @@ describe('start', function () {
         page.get();
     });
 
-    describe('when no name is set', function () {
-        it('shows instructions', function () {
-            expect(page.getInstructionsElement().getText()).toBe('Enter your name');
-        });
-        it('hides greetings', function () {
-            expect(page.getGreetingsElement().isPresent()).toBe(false);
-        });
-    });
 
     describe('when a name is set', function () {
         beforeEach(function () {
