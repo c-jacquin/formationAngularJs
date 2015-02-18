@@ -34,7 +34,7 @@ gulp.task('dev', [
     'buildDev',
     'startDevServer',
     'watchSource',
-    'protractor-qa',
+    'protractor-qa'
 ], function () {
 });
 

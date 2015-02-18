@@ -9,7 +9,9 @@
         'assessments',
         'common'
     ])
-        .config(function ($urlRouterProvider, $locationProvider) {
+        .config(function ($urlRouterProvider, $locationProvider, $sceProvider) {
+
+            $sceProvider.enabled(false);
             $locationProvider.html5Mode(true);
             $urlRouterProvider.otherwise('/');
         })

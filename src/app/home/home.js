@@ -18,31 +18,37 @@
             });
         })
 
-        .controller('HomeController', function (github, collapse) {
+        .controller('HomeController', function (movies, collapse) {
             var self = this;
-            this.user = {
-                name: ''
+            this.movie = {
+                query: ''
             };
+            this.movieList = [];
+
             this.collapseId = 'home';
 
             this.greetingsAreDisplayed = function () {
-                return this.user.name.length > 0;
+                return this.movie.query.length > 0;
             };
             //on enregistre la collapse card dans le service avec le collapseId fournit en attribut via le html
             //on expose dans la vue la valeur stockée dans le service  ( changer le button si ouvert ou fermer )
             this.$collapse = collapse.register(self.collapseId, false);
 
+            var page = 0;
 
-            this.getGithubInfo = function (name) {
-                github
-                    .getUserInfo(name)
-                    .then(function (userInfo) {
-                        self.userInfo = userInfo;
-                        //on utilise le service collapse afin d'ouvrir la collapseCard une fois les données récuperer via github
+            this.getMovies = function (query) {
+                page++;
+                movies
+                    .findByName(query,page)
+                    .then(function(list){
+                        if(list.length < 30){
+                            page = 0;
+                        }
+                        angular.forEach(list,function(movie,index){
+                            self.movieList.push(movie);
+                        });
+                        //console.log(list)
                         collapse.getById('home').isOpen = true;
-                    })
-                    .catch(function (err) {
-                        console.log(err);
                     });
             };
 

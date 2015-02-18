@@ -21,6 +21,7 @@
                     //selon cette valeur on afecte a la propriete css max-height la valeur passée via les attributs html
                     //ou alors 0 pour refermer l'element
                     if (newValue[0].object.isOpen) {
+                        section[0].style.height = scope.maxHeight + 'px';
 
                         section[0].style.maxHeight = scope.maxHeight + 'px';
 

@@ -3,8 +3,9 @@
 
     angular.module('common', [
         'common.SimpleService',
-        'common.github',
+        'common.movies',
         'common.assessments',
-        'common.collapse'
+        'common.collapse',
+        'common.infiniteScroll'
     ]);
 })();

@@ -5,7 +5,7 @@ var StartPage = function () {
     };
 
     this.setName = function (name) {
-        element(by.model('home.user.name')).sendKeys(name);
+        element(by.model('home.movie.query')).sendKeys(name);
     };
 
     this.getGreetingsElement = function () {

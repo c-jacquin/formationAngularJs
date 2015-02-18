@@ -1,39 +1,37 @@
-<section layout="columns" layout-align="center center">
-    <form flex="70" ng-submit="home.getGithubInfo(home.user.name)">
+<section layout="columns" layout-fill layout-align="center center">
+    <form flex="70" name="movieForm" ng-submit="home.getMovies(home.movie.query)">
         <md-input-container>
-            <label>your github account...</label>
-            <input md-maxlength="10" name="name" ng-model="home.user.name">
-            <div ng-messages="assessmentForm.title.$error">
-                <div ng-message="md-maxlength">username has to be less than 10 characters long.</div>
+            <label>a movie name</label>
+            <input md-maxlength="30" type="search" name="query" ng-model="home.movie.query">
+            <div ng-messages="movieForm.query.$error">
+                <div ng-message="md-maxlength">movie title has to be less than 30 characters long.</div>
             </div>
         </md-input-container>
         <div layout="row">
-            <md-button type="submit" class="md-raised" flex>Check github</md-button>
+            <md-button type="submit" class="md-raised" flex>Find movies !!!</md-button>
             <div flex>
-                <md-button style="width:100%;" collapse-button collapse-id="{{ home.collapseId }}" type="button" ng-disabled="!home.user.name">
+                <md-button style="width:100%;" collapse-button collapse-id="{{ home.collapseId }}" type="button" ng-disabled="!home.movie.query">
                     <span ng-show="home.$collapse.isOpen">Hide</span>
                     <span ng-hide="home.$collapse.isOpen">Show</span>
                 </md-button>
             </div>
         </div>
-        <div collapse-card collapse-id="{{ home.collapseId }}" is-open="true" max-height="600">
-            <section  class="md-whiteframe-z4" >
-                <p style="text-align: center;" id="greetings" ng-if="home.greetingsAreDisplayed() && home.user.name">Welcome, {{ home.user.name }}</p>
-                <img ng-src="{{home.userInfo.avatar_url}}" alt="" width="50px" />{{ home.userInfo.login }}
-                <md-list ng-repeat="(key, value) in home.userInfo">
-                    <md-item>
-                        <md-item-content>
-                            <div class="md-tile-left">
-                                {{ key }} :
-                            </div>
-                            <div class="md-tile-content">
-                                {{ value }}
-                            </div>
-                        </md-item-content>
-                    </md-item>
-                </md-list>
+        <div collapse-card collapse-id="{{ home.collapseId }}" is-open="true" max-height="600" >
+            <section  class="md-whiteframe-z4" infinite-scroll when-scrolled="home.getMovies(home.movie.query)">
+                <p style="text-align: center;" id="greetings" ng-if="home.greetingsAreDisplayed() && home.movie.query">You look for, {{ home.movie.query }}</p>
+                <md-grid-list
+                        md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
+                        md-row-height-gt-md="1:1" md-row-height="4:3"
+                        md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+                    <md-grid-tile
+                            ng-repeat="movie in home.movieList"
+                            md-rowspan="3"
+                            md-colspan="2"
+                            <!--{{ movie.posters.thumnail  }}-->
+                        <img ng-src="{{ movie.posters.original }}" width="100%" height="100%" alt=""/>
+                    </md-grid-tile>
+                </md-grid-list>
             </section>
         </div>
-
     </form>
 </section>
