@@ -18,7 +18,7 @@ describe('start', function () {
             expect(page.getInstructionsElement().isPresent()).toBe(false);
         });
         it('shows greetings message', function () {
-            expect(page.getGreetingsElement().getText()).toBe('Welcome, Name');
+            expect(page.getGreetingsElement().getText()).toBe('Search : Name');
         });
     });
 

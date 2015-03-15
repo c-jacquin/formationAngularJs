@@ -11,8 +11,8 @@ describe('HomeController', function () {
 
     describe('when a name is set', function () {
         it('shows greetings', function () {
-            HomeController.user.name = 'userName';
-            expect(HomeController.greetingsAreDisplayed()).toBe(true);
+            HomeController.query = 'userName';
+            expect(HomeController.queryIsDisplayed()).toBe(true);
         });
     });
 

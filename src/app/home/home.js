@@ -19,11 +19,8 @@
         })
 
         .controller('HomeController', function () {
-            this.user = {
-                name: ''
-            };
-            this.greetingsAreDisplayed = function () {
-                return this.user.name.length > 0;
+            this.queryIsDisplayed = function () {
+                return this.query.length > 0;
             };
         });
 })();

@@ -1,11 +1,11 @@
 <section layout="columns" layout-align="center center">
-    <form flex="70" layout="row" ng-submit="">
-        <md-input-container flex>
+    <form flex="70" ng-submit="">
+        <md-input-container>
             <label>Enter a movie title...</label>
             <input name="name" ng-model="home.query">
         </md-input-container>
-        <md-button>
-            Submit
-        </md-button>
     </form>
+    <div ng-if="home.queryIsDisplayed()">
+        Search : {{ home.query }}
+    </div>
 </section>

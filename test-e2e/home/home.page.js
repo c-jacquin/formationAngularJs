@@ -9,7 +9,7 @@ var StartPage = function () {
     };
 
     this.getGreetingsElement = function () {
-        return element(by.id('greetings'));
+        return element(by.id('query'));
     };
 
 };
