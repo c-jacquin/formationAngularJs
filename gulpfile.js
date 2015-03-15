@@ -82,7 +82,6 @@ gulp.task('watchSource', function () {
     gulp.watch(paths.jsSource, ['buildJs']);
     gulp.watch(paths.indexFile, ['reloadIndex']);
     gulp.watch(paths.templates, ['cacheTemplates']);
-    gulp.watch(paths.mockBackendData, ['buildMockBackendData']);
 });
 
 gulp.task('reloadIndex', function () {

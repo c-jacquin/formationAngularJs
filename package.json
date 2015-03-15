@@ -21,6 +21,7 @@
     "gulp-minify-html": "*",
     "gulp-uglify": "*",
     "gulp-usemin": "*",
+    "gulp-awspublish": "*",
     "gulp-ng-annotate": "*",
     "jshint-stylish": "*",
     "karma": "*",
@@ -30,6 +31,7 @@
     "karma-nested-reporter": "*",
     "protractor": "*",
     "gulp-protractor": "*",
-    "gulp-protractor-qa": "*"
+    "gulp-protractor-qa": "*",
+    "json-server": "*"
   }
 }

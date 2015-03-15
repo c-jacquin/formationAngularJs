@@ -1,0 +1,10 @@
+{
+  "posts": [
+    {
+      "id": 0,
+      "title": "the first post",
+      "content": "fist post content",
+      "movie": {}
+    }
+  ]
+}

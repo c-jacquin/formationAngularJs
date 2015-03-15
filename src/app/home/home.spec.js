@@ -2,6 +2,8 @@ describe('HomeController', function () {
 
     var HomeController;
 
+    beforeEach(module('home'));
+
     beforeEach(inject(function ($controller) {
         HomeController = $controller('HomeController');
     }));
