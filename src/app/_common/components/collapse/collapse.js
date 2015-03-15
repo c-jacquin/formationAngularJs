@@ -13,30 +13,35 @@
 
                 var section = element.find('section');
 
-                //ici j'ai remplacer $scope.watch par Object.observe qui fonctionne a peu prés partout
-                //le callback se declenchera a chaque click sur la directive collapse-button possedant le meme collapseId
-                Object.observe(collapse.getById(scope.collapseId), function (newValue) {
+                scope.collapse = collapse.register(scope.collapseId);
 
+                //le callback se declenchera a chaque click sur la directive collapse-button possedant le meme collapseId
+                scope.$watch('collapse',function(newValue){
                     //on teste la nouvelle valeur du booleen stocké dans le service et correspondant ai collapseId
                     //selon cette valeur on afecte a la propriete css max-height la valeur passée via les attributs html
                     //ou alors 0 pour refermer l'element
-                    if (newValue[0].object.isOpen) {
-                        section[0].style.height = scope.maxHeight + 'px';
-
-                        section[0].style.maxHeight = scope.maxHeight + 'px';
-
-                    } else {
-
-                        section[0].style.maxHeight = '0';
-
+                    if(section[0]){
+                        if (newValue.isOpen) {
+                            section.css('maxHeight',scope.maxHeight + 'px');
+                            section.css('height',scope.maxHeight + 'px');
+                        } else {
+                            section.css('maxHeight','0');
+                        }
                     }
-
-                });
+                },true);
             }
         };
     }
 
     function CollapseButtonController($scope, collapse) {
+
+        $scope.$watch(function(){
+            return collapse.getById($scope.collapseId);
+        },function(newValue){
+            if(newValue){
+                $scope.$collapse = newValue;
+            }
+        },true);
 
         //au click sur l'element on change la valeur de l'attribut isOpen de l'objet stocké dans le service
         $scope.toggle = function () {
@@ -47,11 +52,9 @@
     function collapseButtonDirective() {
         return {
             restrict: 'A',
-            scope: {
-                collapseId: '@'
-            },
             controller: 'CollapseButtonController',
             link: function (scope, element, attrs) {
+                scope.collapseId = attrs.collapseId;
                 element.bind('click', scope.toggle);
             }
         };
@@ -81,7 +84,6 @@
             }
         };
     }
-
 
     angular.module('common.collapse', [])
         .controller('CollapseButtonController', CollapseButtonController)

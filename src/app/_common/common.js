@@ -4,8 +4,11 @@
     angular.module('common', [
         'common.SimpleService',
         'common.movies',
-        'common.assessments',
+        'common.blog',
         'common.collapse',
         'common.infiniteScroll'
-    ]);
+    ])
+        .config(function(DSProvider){
+            DSProvider.defaults.basePath = 'http://localhost:3000/'; // etc.
+        });
 })();

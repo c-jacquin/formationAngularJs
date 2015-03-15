@@ -1,24 +1,24 @@
 (function(){
     'use strict';
-    angular.module('assessments',[
-        'assessments.creation',
-        'assessments.list'
+    angular.module('blog',[
+        'blog.creation',
+        'blog.list'
     ]).config(function($stateProvider){
         //ici l'état est abstract du coup on ne pourra pas s y rendre directement mais il sert de parents pour d'autres états ( layout )
-        $stateProvider.state('assessments',{
+        $stateProvider.state('blog',{
             abstract: true,
             views:{
                 main: {
-                    templateUrl: 'assessment/assessment.tpl.html',
-                    controller: 'AssessmentController',
+                    templateUrl: 'blog/blog.tpl.html',
+                    controller: 'BlogController',
                     controllerAs: 'ctrl'
                 }
             }
         });
-    }).controller('AssessmentController',function($mdSidenav,$log){
+    }).controller('BlogController',function($mdSidenav,$log){
         //$mdSidenav est fourni par ngMaterial et permet d'animer les directives md-sidenav ( menu lateral )
         this.toggleSideNav = function(){
-            $mdSidenav('assessment').toggle()
+            $mdSidenav('blog').toggle()
                 .then(function(){
                     $log.debug("toggle RIGHT is done");
                 });

@@ -1,0 +1,17 @@
+<md-list ng-repeat="post in posts.list | filter:posts.selectedItem" >
+    <md-item>
+        <md-item-content>
+            <div class="md-tile-left">
+                <img ng-src="{{ post.movie.posters.original }}"/>
+            </div>
+            <div class="md-tile-content">
+                {{ post.title }}
+            </div>
+            <div class="md-tile-right" layout="row">
+                <md-button class="md-fab" ng-click="posts.details($event,post.id,$index)">
+                    Edit
+                </md-button>
+            </div>
+        </md-item-content>
+    </md-item>
+</md-list>

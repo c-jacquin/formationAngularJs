@@ -1,6 +1,6 @@
 var config = {
-    port: 3000,
-    portDist:3001,
+    port: 5000,
+    portDist:5001,
     paths: {
         dist: './dist',
         srcFolder: 'src',

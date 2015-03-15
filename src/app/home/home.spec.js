@@ -7,18 +7,18 @@ describe('HomeController', function () {
 
     var dummyMovies = [
         {
-            title: 'la grande vadrouille'
+            title: 'matrix1'
         },
         {
-            title: 'le parrain'
+            title: 'matrix2'
         }
     ];
 
     //on definie le module angular que l'on souhaite tester
-    //on inject les differents services necessaires au tests
-    //et on definie un mock pour le service github$
+    //on injecte les differents services necessaires au tests
+    //et on definie un mock pour le service movies
     beforeEach(module('home', function ($provide) {
-        // le service mock qui remplacera le service github
+        // le service mock qui remplacera le service movies
         moviesMock = {
             findByName: function () {
                 return $q(function (resolve, reject) {
@@ -42,15 +42,6 @@ describe('HomeController', function () {
         HomeController = $controller('HomeController');
         $timeout = _$timeout_;
     }));
-
-
-    describe('when a name is set', function () {
-
-        it('shows greetings', function () {
-            HomeController.movie.query = 'matrix';
-            expect(HomeController.greetingsAreDisplayed()).toBe(true);
-        });
-    });
 
     describe('movies feature', function () {
         it('should have call findByName method of movies service', function () {

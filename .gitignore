@@ -4,3 +4,5 @@ src/build
 src/vendor
 dist
 npm-debug.log
+config/s3.json
+.awspublish-formation-angularjs

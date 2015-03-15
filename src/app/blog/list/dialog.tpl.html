@@ -1,0 +1,18 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <md-content>
+        <md-subheader class="md-sticky-no-effect">{{ dialog.post.title }} ({{ dialog.post.movie.title }})</md-subheader>
+        <article>
+            <img src="{{ dialog.post.movie.posters.original }}" style="float: left" alt=""/>
+            <p>
+                {{ dialog.post.content }}
+            </p>
+        </article>
+    </md-content>
+    <div class="md-actions" layout="row">
+        <span flex></span>
+        <md-button ng-href="http://en.wikipedia.org/wiki/{{ dialog.post.movie.title }}" target="_blank">
+            More on Wikipédia
+        </md-button>
+    </div>
+</md-dialog>
+

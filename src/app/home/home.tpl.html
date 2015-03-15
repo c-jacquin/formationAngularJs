@@ -1,5 +1,5 @@
-<section layout="columns" layout-fill layout-align="center center">
-    <form flex="70" name="movieForm" ng-submit="home.getMovies(home.movie.query)">
+<section layout="row" layout-fill layout-align="center center">
+    <form flex="70" name="movieForm" ng-submit="home.getMovies(home.movie.query,$event)">
         <md-input-container>
             <label>a movie name</label>
             <input md-maxlength="30" type="search" name="query" ng-model="home.movie.query">
@@ -11,14 +11,13 @@
             <md-button type="submit" class="md-raised" flex>Find movies !!!</md-button>
             <div flex>
                 <md-button style="width:100%;" collapse-button collapse-id="{{ home.collapseId }}" type="button" ng-disabled="!home.movie.query">
-                    <span ng-show="home.$collapse.isOpen">Hide</span>
-                    <span ng-hide="home.$collapse.isOpen">Show</span>
+                    <span ng-show="$collapse.isOpen">Hide</span>
+                    <span ng-hide="$collapse.isOpen">Show</span>
                 </md-button>
             </div>
         </div>
         <div collapse-card collapse-id="{{ home.collapseId }}" is-open="true" max-height="600" >
             <section  class="md-whiteframe-z4" infinite-scroll when-scrolled="home.getMovies(home.movie.query)">
-                <p style="text-align: center;" id="greetings" ng-if="home.greetingsAreDisplayed() && home.movie.query">You look for, {{ home.movie.query }}</p>
                 <md-grid-list
                         md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
                         md-row-height-gt-md="1:1" md-row-height="4:3"
@@ -28,7 +27,7 @@
                             md-rowspan="3"
                             md-colspan="2"
                             <!--{{ movie.posters.thumnail  }}-->
-                        <img ng-src="{{ movie.posters.original }}" width="100%" height="100%" alt=""/>
+                        <img ng-src="{{ movie.posters.original }}" width="100%" height="100%" alt="" ui-sref="blog.creation({ movieName: movie.title })"/>
                     </md-grid-tile>
                 </md-grid-list>
             </section>

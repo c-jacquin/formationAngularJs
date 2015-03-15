@@ -1,15 +1,22 @@
 describe('infinite scroller component', function() {
 
     var element,
-        scope;
+        scope,
+        mockController = {};
 
 
     beforeEach(module('common.infiniteScroll'));
     beforeEach(inject(function ($compile, $rootScope) {
 
-        element = angular.element('<div infinite-scroll style="height:50px;overflow:auto;"><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>');
+        mockController.loadMore = function(){
+
+        };
+
+        element = angular.element('<div infinite-scroll load-more="mockController.loadMore"></div>');
 
         $compile(element)($rootScope.$new());
+
+        spyOn(mockController, 'loadMore').and.callThrough();
 
         scope = element.isolateScope();
     }));
@@ -18,5 +25,8 @@ describe('infinite scroller component', function() {
 
     it('should call the callback defined in load-more attributtte',function(){
 
-    })
+        //element.triggerHandler('scroll');
+        //expect(mockController.loadMore).toHaveBeenCalled();
+
+    });
 });

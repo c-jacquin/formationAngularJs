@@ -1,0 +1,41 @@
+<section layout="row">
+    <div flex></div>
+    <form name="blogForm" novalidate  flex="80" ng-submit="blog.submit()" layout="row" layout-padding>
+        <div flex="50">
+            <md-autocomplete
+                    md-selected-item="blog.movie"
+                    md-search-text="blog.movie.title"
+                    md-items="item in blog.getMovies(blog.movie.title)"
+                    md-item-text="title"
+                    placeholder="filter by title">
+                <span md-highlight-text="blog.movie.title">{{item.title}}</span>
+            </md-autocomplete>
+            <img ng-src="{{ blog.movie.posters.original }}" class="movie-picture" width="100%" alt=""/>
+        </div>
+        <div flex="50">
+            <md-input-container>
+                <label>Title</label>
+                <input md-maxlength="30" name="title" ng-model="blog.title">
+                <div ng-messages="blogForm.title.$error">
+                    <div ng-message="md-maxlength">The title has to be less than 30 characters long.</div>
+                </div>
+            </md-input-container>
+            <md-input-container flex>
+                <label>Content</label>
+                <textarea ng-model="blog.content" name="content" md-maxlength="150"></textarea>
+                <div ng-messages="blogForm.content.$error">
+                    <div ng-message="md-maxlength">The instructions has to be less than 500 characters long.</div>
+                </div>
+            </md-input-container>
+            <div layout="row">
+                <md-button flex type="submit" ng-disabled="blogForm.$invalid">
+                    Submit
+                </md-button>
+                <md-button flex type="reset" ng-disabled="blogForm.$pristine">
+                    Reset
+                </md-button>
+            </div>
+        </div>
+    </form>
+    <div flex></div>
+</section>

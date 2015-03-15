@@ -1,0 +1,41 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" layout-fill md-component-id="blog">
+    <md-toolbar class="md-theme-indigo">
+        <div class="md-toolbar-tools" layout="row">
+            <h3 flex>
+                Nav
+            </h3>
+            <md-button ng-click="ctrl.toggleSideNav()" hide-gt-md>
+                X
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding">
+
+        <md-list>
+            <md-item>
+                <md-item-content>
+                    <md-button ui-sref="blog.creation">
+                        Creation
+                    </md-button>
+                </md-item-content>
+            </md-item>
+            <md-item>
+                <md-item-content>
+
+                    <md-button ui-sref="blog.list">
+                        List
+                    </md-button>
+                </md-item-content>
+            </md-item>
+        </md-list>
+    </md-content>
+</md-sidenav>
+<md-toolbar class="md-primary" md-scroll-shrink="true">
+    <div class="md-toolbar-tools">
+        <span flex></span>
+        <h1>Blog section</h1>
+    </div>
+    <md-button ng-click="ctrl.toggleSideNav()" class="md-fab md-fab-top-left">></md-button>
+</md-toolbar>
+<md-content ui-view="blog" >
+</md-content>

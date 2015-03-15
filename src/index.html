@@ -9,10 +9,21 @@
     <link rel="stylesheet" href="vendor/angular-material/angular-material.css"/>
     <link rel="stylesheet" href="style.css" type="text/css"/>
     <!-- endbuild -->
+    <!-- build:js js/main.js -->
+    <script src="vendor/angular/angular.js"></script>
+    <script src="vendor/angular-animate/angular-animate.js"></script>
+    <script src="vendor/angular-aria/angular-aria.js"></script>
+    <script src="vendor/angular-material/angular-material.js"></script>
+    <script src="vendor/js-data/dist/js-data.js"></script>
+    <script src="vendor/js-data-angular/dist/js-data-angular.js"></script>
+    <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="build/all-source.js"></script>
+    <script src="build/templates.js"></script>
+    <!-- endbuild  -->
 </head>
-<body ng-app="app" layout="column" layout-fill style="overflow-y:hidden;">
+<body ng-app="app" layout="column" >
 
-<md-toolbar style="min-height:40px;font-size:0.9em">
+<md-toolbar md-scroll-shrink="true">
     <div class="material-toolbar-tool" layout="row" layout-padding>
         <h1 style="margin:0;" flex>
             my App
@@ -20,27 +31,13 @@
         <md-button ui-sref="home">
             Home
         </md-button>
-        <md-button ui-sref="assessments.list">
-            Assessment
+        <md-button ui-sref="blog.list">
+            Blog
         </md-button>
     </div>
 </md-toolbar>
-<main  ui-view="main" flex></main>
-
-
-
-
-<!-- build:js js/main.js -->
-<script src="vendor/lodash/dist/lodash.js"></script>
-<script src="vendor/angular/angular.js"></script>
-<script src="vendor/angular-animate/angular-animate.js"></script>
-<script src="vendor/angular-aria/angular-aria.js"></script>
-<script src="vendor/angular-material/angular-material.js"></script>
-<script src="vendor/restangular/dist/restangular.js"></script>
-<script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="build/all-source.js"></script>
-<script src="build/templates.js"></script>
-<!-- endbuild  -->
-
+<md-content flex  ui-view="main" ></md-content>
 </body>
+
+
 </html>

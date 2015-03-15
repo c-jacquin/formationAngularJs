@@ -20,13 +20,14 @@ describe('collapse component', function() {
         button = angular.element('<div collapse-button collapse-id="test">click me !!!</div>');
         card = angular.element('<div collapse-card collapse-id="test" max-height="1000">Some text !!!</div>');
 
+        buttonScope = $rootScope.$new();
 
         //on compile les bouts de html et fournis un scope ($rootScope.$new() return un nouveau scope)
-        $compile(button)($rootScope.$new());
+        $compile(button)(buttonScope);
         $compile(card)($rootScope.$new());
 
         //on recupere les scope associés à chaque directive
-        buttonScope = button.isolateScope();
+        $controller('CollapseButtonController',{$scope : buttonScope});
         cardScope = card.isolateScope();
     }));
 
@@ -38,7 +39,7 @@ describe('collapse component', function() {
     it('should change the value of the scope property', function(){
         expect(collapse.getById('test').isOpen).toBeFalsy();
         //on lance la methode du controller afin de tester son efficacité
-        buttonScope.toggle();
+        buttonScope.toggle('test');
         expect(collapse.getById('test').isOpen).toBeTruthy();
     });
 
