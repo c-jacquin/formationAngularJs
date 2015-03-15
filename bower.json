@@ -1,0 +1,14 @@
+{
+  "name": "formation-angular-js",
+  "description": "Simple AngularJS seed project",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "*",
+    "angular-material": "master",
+    "angular-ui-router": "*"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.3.*",
+    "angular-mock-back": "0.1.1"
+  }
+}

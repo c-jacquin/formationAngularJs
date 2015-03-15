@@ -1,0 +1,35 @@
+{
+  "name": "formation-angular-js",
+  "version": "0.0.1",
+  "repository": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "express": "*",
+    "gulp": "*",
+    "gulp-angular-templatecache": "*",
+    "gulp-concat": "*",
+    "gulp-jshint": "*",
+    "gulp-livereload": "*",
+    "gulp-preprocess": "*",
+    "gulp-rename": "*",
+    "gulp-sourcemaps": "*",
+    "jasmine-core": "*",
+    "jasmine-spec-reporter": "*",
+    "gulp-rev": "*",
+    "gulp-minify-css": "*",
+    "gulp-minify-html": "*",
+    "gulp-uglify": "*",
+    "gulp-usemin": "*",
+    "gulp-ng-annotate": "*",
+    "jshint-stylish": "*",
+    "karma": "*",
+    "karma-chrome-launcher": "*",
+    "karma-jasmine": "*",
+    "karma-html-reporter": "*",
+    "karma-nested-reporter": "*",
+    "protractor": "*",
+    "gulp-protractor": "*",
+    "gulp-protractor-qa": "*"
+  }
+}
