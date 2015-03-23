@@ -7,12 +7,16 @@ module.exports = function (config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine'],
-
+        frameworks: [
+            'jasmine'
+        ],
         // list of files / patterns to load in the browser
         files: [
             'vendor/angular/angular.js',
             'vendor/angular-mocks/angular-mocks.js',
+            'vendor/angular-animate/angular-animate.js',
+            'vendor/angular-aria/angular-aria.js',
+            'vendor/angular-material/angular-material.js',
             'vendor/angular-ui-router/release/angular-ui-router.js',
             'app/**/*.js'
         ],
@@ -29,7 +33,6 @@ module.exports = function (config) {
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
         //reporters: ['dots'],
         reporters: ['nyan'],
-
         // web server port
         port: 9876,
 
@@ -45,7 +48,7 @@ module.exports = function (config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome'],
+        browsers: ['Firefox'],
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits

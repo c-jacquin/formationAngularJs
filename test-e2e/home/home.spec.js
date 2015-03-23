@@ -1,24 +1,36 @@
-var StartPage = require('./start.page.js');
-
-describe('start', function () {
+var HomePage = require('./home.page.js');
+describe('homePage', function () {
 
     var page;
 
     beforeEach(function () {
-        page = new StartPage();
+        page = new HomePage();
         page.get();
     });
 
-
-    describe('when a name is set', function () {
+    describe('when a query is set', function () {
         beforeEach(function () {
-            page.setName('Name');
+            page.setQuery('matrix');
         });
-        it('hides instructions', function () {
-            expect(page.getInstructionsElement().isPresent()).toBe(false);
+
+        it('should shows search message', function () {
+            expect(page.getSearchElement().getText()).toBe('Search : matrix');
         });
-        it('shows greetings message', function () {
-            expect(page.getGreetingsElement().getText()).toBe('Search : Name');
+
+        it('should display movie list', function(){
+            page.getSearchbutton()
+                .click()
+                .then(function(){
+                    page.getMovieList().isDisplayed().then(function (isVisible) {
+                        expect(isVisible).toBe(true);
+                    });
+                })
+        });
+    });
+
+    describe('when no query is set', function () {
+        it('should hides search message', function () {
+            expect(page.getSearchElement().isPresent()).toBe(false);
         });
     });
 

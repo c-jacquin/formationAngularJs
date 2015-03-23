@@ -3,7 +3,7 @@
 
     angular.module('common')
 
-        .service('simpleService', function () {
+        .factory('simpleService', function () {
 
         });
 })();

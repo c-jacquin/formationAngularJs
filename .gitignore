@@ -3,4 +3,5 @@ node_modules
 src/build
 src/vendor
 dist
+config/s3.json
 npm-debug.log

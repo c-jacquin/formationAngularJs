@@ -7,9 +7,16 @@
         'home',
         'common'
     ])
-        .config(function ($urlRouterProvider, $locationProvider) {
+        .config(function ($urlRouterProvider, $locationProvider, $sceProvider, $mdThemingProvider) {
+
             $locationProvider.html5Mode(true);
+
             $urlRouterProvider.otherwise('/');
+
+            $mdThemingProvider.theme('default')
+                .primaryPalette('teal')
+                .warnPalette('deep-orange')
+                .accentPalette('cyan');
         })
 
         .run(function () {

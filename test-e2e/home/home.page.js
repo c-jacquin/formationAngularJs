@@ -1,15 +1,19 @@
 var StartPage = function () {
 
     this.get = function () {
-        browser.get('/home');
+        browser.get('/');
     };
 
-    this.setName = function (name) {
-        element(by.model('home.query')).sendKeys(name);
+    this.setQuery = function (query) {
+        element(by.model('home.movie.query')).sendKeys(query);
     };
 
-    this.getGreetingsElement = function () {
-        return element(by.id('query'));
+    this.getSearchElement = function () {
+        return element(by.id('search'));
+    };
+
+    this.getSearchbutton = function () {
+        return element(by.id('search-button'));
     };
 
 };

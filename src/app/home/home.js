@@ -19,8 +19,19 @@
         })
 
         .controller('HomeController', function () {
-            this.queryIsDisplayed = function () {
-                return this.query.length > 0;
+            var self = this;
+
+            self.movie = {
+                query: ""
             };
+
+            self.queryIsDisplayed = function () {
+                return self.movie.query.length > 0;
+            };
+
+            self.instructionsAreDisplayed = function(){
+                return self.movie.query.length === 0;
+            };
+
         });
 })();

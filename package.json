@@ -1,7 +1,7 @@
 {
   "name": "formation-angular-js",
-  "version": "0.0.1",
-  "repository": "",
+  "version": "0.0.2",
+  "repository": "https://github.com/Charl---/formationAngularJs",
   "dependencies": {
   },
   "devDependencies": {
@@ -15,7 +15,7 @@
     "gulp-rename": "*",
     "gulp-sourcemaps": "*",
     "jasmine-core": "*",
-    "jasmine-spec-reporter": "*",
+    "jasmine-spec-reporter": "1",
     "gulp-rev": "*",
     "gulp-minify-css": "*",
     "gulp-minify-html": "*",
@@ -26,9 +26,11 @@
     "jshint-stylish": "*",
     "karma": "*",
     "karma-chrome-launcher": "*",
+    "karma-firefox-launcher": "*",
     "karma-jasmine": "*",
     "karma-html-reporter": "*",
     "karma-nested-reporter": "*",
+    "karma-nyan-reporter": "*",
     "protractor": "*",
     "gulp-protractor": "*",
     "gulp-protractor-qa": "*",

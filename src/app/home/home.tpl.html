@@ -1,11 +1,18 @@
-<section layout="column" layout-align="center center">
-    <form style="width:70%;" ng-submit="">
+<section layout="row" layout-fill layout-align="center center">
+    <form flex="70" name="movieForm" ng-submit="home.getMovies(home.movie.query,$event)">
+        <div id="instructions" ng-if="home.instructionsAreDisplayed()">
+            Look for a movie ?
+        </div>
         <md-input-container>
-            <label>Enter a movie title...</label>
-            <input name="name" ng-model="home.query">
+            <label>a movie name</label>
+            <input md-maxlength="30" type="search" name="query" ng-model="home.movie.query">
+            <div ng-messages="movieForm.query.$error">
+                <div ng-message="md-maxlength">movie title has to be less than 30 characters long.</div>
+            </div>
         </md-input-container>
+        <md-button id="search-button" type="submit" class="md-raised" flex>Find movies !!!</md-button>
+        <div id="search" ng-if="home.queryIsDisplayed()">
+            Search : {{ home.movie.query }}
+        </div>
     </form>
-    <div ng-if="home.queryIsDisplayed()">
-        Search : {{ home.query }}
-    </div>
 </section>

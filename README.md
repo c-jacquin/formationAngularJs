@@ -26,6 +26,7 @@ Here's what you get out of the box :
   - ngMaterial
   - No need to add a script tag in your index.html for every JavaScript file you write
 
+
 ##setup
 
 - open a terminal go in the directory of the project and type:

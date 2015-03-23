@@ -1,8 +1,8 @@
-describe('SimpleService.sayHello', function () {
+describe('SimpleService', function () {
 
     var simpleService;
 
-    beforeEach(module('common.SimpleService'));
+    beforeEach(module('common'));
     beforeEach(inject(function (_simpleService_) {
         simpleService = _simpleService_;
     }));
