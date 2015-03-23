@@ -10,7 +10,7 @@
                 url: '/',
                 views: {
                     main: {
-                        templateUrl: '/home.tpl.html',
+                        templateUrl: 'components/home/home.tpl.html',
                         controller: 'HomeController',
                         controllerAs: 'home'
                     }
