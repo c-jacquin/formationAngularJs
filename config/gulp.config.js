@@ -4,7 +4,9 @@ var config = {
     paths: {
         dist: './dist',
         srcFolder: 'src',
+        buildFolder: 'src/build',
         jsSource: ['src/app/**/*.js', '!src/app/**/*.spec.js'],
+        sassSource: ['src/**/*.scss','!src/vendor/**/*.scss'],
         indexFile: 'src/index.html',
         templates: 'src/app/**/*.html',
         unitTests: 'src/app/**/*.spec.js',

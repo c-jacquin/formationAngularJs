@@ -4,9 +4,8 @@ var express = require('express'),
     jshint = require('gulp-jshint'),
     liveReload = require('gulp-livereload'),
     annotate = require('gulp-ng-annotate'),
-    sourceMaps = require('gulp-sourcemaps');
-
-var buildFolder = 'src/build';
+    sourceMaps = require('gulp-sourcemaps'),
+    sass = require('gulp-sass');
 
 module.exports = function(gulp,config, paths){
     gulp.task('dev', [
@@ -18,6 +17,7 @@ module.exports = function(gulp,config, paths){
 
     gulp.task('buildDev', [
         'buildJs',
+        'buildStyle',
         'cacheTemplates'
     ]);
 
@@ -28,15 +28,24 @@ module.exports = function(gulp,config, paths){
             .pipe(sourceMaps.init())
             .pipe(concat('all-source.js'))
             .pipe(sourceMaps.write())
-            .pipe(gulp.dest(buildFolder))
+            .pipe(gulp.dest(paths.buildFolder))
             .pipe(liveReload());
     });
 
     gulp.task('cacheTemplates', function () {
         gulp.src(paths.templates)
             .pipe(templateCache({module: 'app'}))
-            .pipe(gulp.dest(buildFolder))
+            .pipe(gulp.dest(paths.buildFolder))
             .pipe(liveReload());
+    });
+
+    gulp.task('buildStyle',function(){
+        gulp.src(paths.sassSource)
+            .pipe(sourceMaps.init())
+            .pipe(sass())
+            .pipe(concat('style.css'))
+            .pipe(sourceMaps.write())
+            .pipe(gulp.dest(paths.srcFolder));
     });
 
     gulp.task('startDevServer', function () {

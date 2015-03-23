@@ -17,15 +17,7 @@ describe('homePage', function () {
             expect(page.getSearchElement().getText()).toBe('Search : matrix');
         });
 
-        it('should display movie list', function(){
-            page.getSearchbutton()
-                .click()
-                .then(function(){
-                    page.getMovieList().isDisplayed().then(function (isVisible) {
-                        expect(isVisible).toBe(true);
-                    });
-                })
-        });
+
     });
 
     describe('when no query is set', function () {

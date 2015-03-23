@@ -1,6 +1,7 @@
 .idea
 node_modules
 src/build
+src/style.css
 src/vendor
 dist
 config/s3.json

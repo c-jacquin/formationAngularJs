@@ -1,16 +1,9 @@
-[collapse-card] section{
-    height:auto;
-    max-height: 0;
-    overflow:auto;
-    transition: max-height 0.5s ease-in;
-}
+[ui-view] {
+  width: 100%; }
 
-[ui-view]{
-    width: 100%;
-}
 
-.movie-picture{
-    padding-left: 25%;
-    padding-right: 25%;
-    background: white;
-}
+* {
+  color: black; }
+
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LnNjc3MiLCJhcHAvY29tcG9uZW50cy9ob21lL2hvbWUuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLEFBQU87OztBQ0RUO0VBQ0UsQUFBTyIsImZpbGUiOiJzdHlsZS5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJbdWktdmlld117XG4gIHdpZHRoOiAxMDAlO1xufSIsIip7XG4gIGNvbG9yOiBibGFjaztcbn0iXSwic291cmNlUm9vdCI6Ii9zb3VyY2UvIn0= */
