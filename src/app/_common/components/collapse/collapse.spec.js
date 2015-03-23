@@ -18,6 +18,7 @@ describe('collapse component', function() {
 
         //on créer les objets angular correspondant à des elements html utilisant nos directives
         button = angular.element('<div collapse-button collapse-id="test">click me !!!</div>');
+
         card = angular.element('<div collapse-card collapse-id="test" max-height="1000">Some text !!!</div>');
 
         buttonScope = $rootScope.$new();

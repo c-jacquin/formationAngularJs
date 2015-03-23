@@ -24,9 +24,6 @@ describe('HomeController', function () {
                 return $q(function (resolve, reject) {
                     resolve(dummyMovies);
                 })
-            },
-            getAll: function(){
-                return dummyMovies;
             }
         };
         //spyOn est fournis par jasmine et permet de mettre un listener sur une methode, nous pourrons donc tester si cette derniere a été appelée

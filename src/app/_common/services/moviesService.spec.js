@@ -39,7 +39,7 @@ describe('movies service', function () {
                 responseData = response;
             });
 
-        //$httpBackend.expectJSONP(url+moviesConfig.apiKey+'&q='+query+'&page=1&page_limit=30&callback=JSON_CALLBACK');
+        $httpBackend.expectJSONP(url+moviesConfig.apiKey+'&q='+query+'&page=1&page_limit=30&callback=JSON_CALLBACK');
         $httpBackend.flush();
         expect(responseData.length).toBe(2);
     });

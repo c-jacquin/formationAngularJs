@@ -12,7 +12,9 @@
 
                 elm.bind('scroll', function(e) {
                     if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+
                         scope.$apply(scope.whenScrolled);
+
                     }
                 });
             }
