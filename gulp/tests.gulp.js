@@ -17,7 +17,7 @@ module.exports = function(gulp,config, paths){
         }, done);
     });
 
-    gulp.task('tdd',['dev'], function (done) {
+    gulp.task('tdd', function (done) {
         karma.start({
             configFile: pathToKarmaConfigFile
         }, done);
