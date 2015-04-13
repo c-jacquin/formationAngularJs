@@ -11,8 +11,7 @@ module.exports = function(gulp,config, paths){
     gulp.task('dev', [
         'buildDev',
         'startDevServer',
-        'watchSource',
-        'protractor-qa'
+        'watchSource'
     ]);
 
     gulp.task('buildDev', [
